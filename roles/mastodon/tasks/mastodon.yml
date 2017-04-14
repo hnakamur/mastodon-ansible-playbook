@@ -25,15 +25,19 @@
   tags:
     - yarn_install
 
-- name: Setup mastodon db
+- include: config.yml
+  tags:
+    - config
+
+- name: Migrate mastodon production db
   shell: |
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
-    bundle exec rails db:migrate
+    RAILS_ENV=production bundle exec rails db:migrate
   args:
     chdir: "{{ mastodon_app_dir }}"
   tags:
-    - db_setup
+    - migrate_db
 
 - name: Precompile assets
   shell: |

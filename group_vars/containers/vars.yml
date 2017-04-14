@@ -1,3 +1,23 @@
 ---
 mastodon_app_dir: /home/mastodon/app
 mastodon_app_git_version: master
+
+production_env_path: "{{ mastodon_app_dir }}/.env.production"
+
+redis_host: localhost
+redis_port: 6379
+
+db_host: localhost
+db_name: mastodon_production
+db_user: mastodon
+db_password: "{{ lookup('ini', 'db_password section=produciton file=passwords.ini') }}"
+db_port: 5432
+
+local_domain: example.com
+local_https: "true"
+
+smtp_server: smtp.gmail.com
+smtp_port: 587
+smtp_login: hnakamur@gmail.com
+smtp_password: "{{ lookup('ini', 'smtp_password section=produciton file=passwords.ini') }}"
+smtp_from_address: hnakamur+mastodon-admin@gmail.com

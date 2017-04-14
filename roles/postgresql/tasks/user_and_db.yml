@@ -1,13 +1,14 @@
 ---
 - name: Create postgresql user for mastodon
   postgresql_user:
-    name: mastodon
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
     state: present
 
 - name: Create postgresql db for mastodon
   postgresql_db:
-    name: mastodon_development
-    owner: mastodon
+    name: "{{ db_name }}"
+    owner: "{{ db_user }}"
     encoding: UTF-8
     lc_collate: ja_JP.UTF-8
     lc_ctype: ja_JP.UTF-8

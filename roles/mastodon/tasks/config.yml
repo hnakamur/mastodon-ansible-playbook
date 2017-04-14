@@ -1,0 +1,47 @@
+---
+- name: Check config file exists
+  stat:
+    path: "{{ production_env_path }}"
+  register: production_env_file_st
+
+- debug: var=production_env_file_st
+
+- block:
+    - name: Generate secret for paperclip
+      shell: |
+        export PATH="$HOME/.rbenv/bin:$PATH"
+        eval "$(rbenv init -)"
+        bundle exec rake secret
+      args:
+        chdir: "{{ mastodon_app_dir }}"
+      register: paper_clip_secret_result
+
+    - name: Generate secret key base
+      shell: |
+        export PATH="$HOME/.rbenv/bin:$PATH"
+        eval "$(rbenv init -)"
+        bundle exec rake secret
+      args:
+        chdir: "{{ mastodon_app_dir }}"
+      register: secret_key_base_result
+
+    - name: Generate otp secret
+      shell: |
+        export PATH="$HOME/.rbenv/bin:$PATH"
+        eval "$(rbenv init -)"
+        bundle exec rake secret
+      args:
+        chdir: "{{ mastodon_app_dir }}"
+      register: opt_secret_result
+
+    - name: Set three secrets
+      set_fact:
+        paperclip_secret: "{{ paper_clip_secret_result.stdout }}"
+        secret_key_base: "{{ secret_key_base_result.stdout }}"
+        opt_secret: "{{ opt_secret_result.stdout }}"
+
+    - name: Create production env file
+      template:
+        src: env.production.j2
+        dest: "{{ production_env_path }}"
+  when: not production_env_file_st.stat.exists
