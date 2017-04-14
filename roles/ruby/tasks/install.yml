@@ -1,0 +1,14 @@
+---
+- name: Install rbenv, ruby-build and packages to build ruby
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - rbenv
+    - ruby-build
+    - git-core
+    - g++
+    - libpq-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - libreadline-dev

@@ -1,0 +1,46 @@
+---
+- name: Install bundler
+  shell: |
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    gem install bundler
+  args:
+    chdir: "{{ mastodon_app_dir }}"
+    creates: /home/mastodon/.rbenv/shims/bundle
+
+- name: Install gems for mastodon
+  shell: |
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    bundle install
+  args:
+    chdir: "{{ mastodon_app_dir }}"
+  tags:
+    - bundle_install
+
+- name: Install node modules for mastodon
+  command: yarn install
+  args:
+    chdir: "{{ mastodon_app_dir }}"
+  tags:
+    - yarn_install
+
+- name: Setup mastodon db
+  shell: |
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    bundle exec rails db:migrate
+  args:
+    chdir: "{{ mastodon_app_dir }}"
+  tags:
+    - db_setup
+
+- name: Precompile assets
+  shell: |
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    bundle exec rails assets:precompile
+  args:
+    chdir: "{{ mastodon_app_dir }}"
+  tags:
+    - precompile_assets

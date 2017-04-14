@@ -1,0 +1,12 @@
+---
+- hosts: containers
+  roles:
+    #- apt_update
+    - locale
+    - base_packages
+    - users
+    - postgresql
+    - redis
+    - nodejs
+    - yarn
+    - mastodon

@@ -1,0 +1,10 @@
+---
+- name: Install postgresql
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    # NOTE: psycopg2 is needed for ansible postgresql_db and postgresql_user modules
+    - python3-psycopg2

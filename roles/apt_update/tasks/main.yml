@@ -1,0 +1,4 @@
+---
+- include: apt_update.yml
+  tags:
+    - apt_update

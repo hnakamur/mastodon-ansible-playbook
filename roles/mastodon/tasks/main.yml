@@ -1,0 +1,22 @@
+---
+- include: dependencies.yml
+  tags:
+    - mastodon
+
+- include: rbenv.yml
+  become: yes
+  become_user: mastodon
+  tags:
+    - mastodon
+
+- include: ruby.yml
+  become: yes
+  become_user: mastodon
+  tags:
+    - mastodon
+
+- include: mastodon.yml
+  become: yes
+  become_user: mastodon
+  tags:
+    - mastodon

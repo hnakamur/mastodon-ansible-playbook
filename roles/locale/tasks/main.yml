@@ -1,0 +1,4 @@
+---
+- include: locale.yml
+  tags:
+    - locale

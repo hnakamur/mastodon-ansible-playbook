@@ -1,0 +1,14 @@
+---
+- name: Create mastodon group
+  group:
+    name: mastodon
+    system: yes
+    state: present
+
+- name: Create mastodon user
+  user:
+    name: mastodon
+    group: mastodon
+    shell: /bin/bash
+    system: yes
+    state: present

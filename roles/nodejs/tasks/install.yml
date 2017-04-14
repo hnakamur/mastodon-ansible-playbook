@@ -1,0 +1,10 @@
+---
+- name: Add repo for NodeJS
+  shell: curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
+  args:
+    creates: /etc/apt/sources.list.d/nodesource.list
+
+- name: Install nodejs
+  apt:
+    name: nodejs
+    state: present

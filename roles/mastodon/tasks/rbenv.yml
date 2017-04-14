@@ -1,0 +1,30 @@
+---
+- name: Install rbenv
+  git:
+    repo: https://github.com/rbenv/rbenv.git
+    dest: /home/mastodon/.rbenv
+
+- name: Add config for rbenv to .bash_profile
+  blockinfile:
+    path: /home/mastodon/.bash_profile
+    create: yes
+    block: |
+      export PATH="$HOME/.rbenv/bin:$PATH"
+      eval "$(rbenv init -)"
+
+- name: Run configure for rbenv
+  command: src/configure
+  args:
+    chdir: /home/mastodon/.rbenv
+    creates: /home/mastodon/.rbenv/src/Makefile
+
+- name: Run make for rbenv
+  command: make -C src
+  args:
+    chdir: /home/mastodon/.rbenv
+    creates: /home/mastodon/.rbenv/libexec/rbenv-realpath.dylib
+
+- name: Install ruby-build
+  git:
+    repo: https://github.com/rbenv/ruby-build.git
+    dest: /home/mastodon/.rbenv/plugins/ruby-build

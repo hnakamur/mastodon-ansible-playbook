@@ -1,0 +1,30 @@
+---
+- name: Download mastodon source
+  git:
+    dest: "{{ mastodon_app_dir }}"
+    repo: https://github.com/tootsuite/mastodon
+    version: "{{ mastodon_app_git_version }}"
+    # NOTE: Since db/schema.rb will be modifed after migration,
+    # we do not update the work directory after the first run.
+    update: no
+
+- name: Read .ruby-version
+  command: cat .ruby-version
+  args:
+    chdir: "{{ mastodon_app_dir }}"
+  changed_when: no
+  register: ruby_version_ret
+
+- name: Set ruby_version fact
+  set_fact:
+    ruby_version: "{{ ruby_version_ret.stdout }}"
+
+- name: "Compiling Ruby {{ ruby_version }}: warning, this takes a while!!!"
+  shell: |
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    rbenv install $(cat .ruby-version)
+    rbenv global $(cat .ruby-version)
+  args:
+    chdir: "{{ mastodon_app_dir }}"
+    creates: "/home/mastodon/.rbenv/versions/{{ ruby_version }}/bin/ruby"

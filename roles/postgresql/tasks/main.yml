@@ -1,0 +1,10 @@
+---
+- include: install.yml
+  tags:
+    - postgresql
+
+- include: user_and_db.yml
+  become: yes
+  become_user: postgres
+  tags:
+    - postgresql
