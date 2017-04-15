@@ -1,0 +1,7 @@
+---
+- name: Make sure postgresql server started and enabled
+  systemd:
+    name: postgresql
+    state: started
+    enabled: yes
+    daemon_reload: yes

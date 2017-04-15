@@ -1,0 +1,13 @@
+---
+- name: Create mastodon-sidekiq service
+  template:
+    src: mastodon-sidekiq.service.j2
+    dest: /etc/systemd/system/mastodon-sidekiq.service
+  register: mastodon_sidekiq_service_tmpl
+
+- name: Start and enable mastodon-sidekiq service
+  systemd:
+    name: mastodon-sidekiq
+    state: started
+    enabled: yes
+    daemon_reload: yes

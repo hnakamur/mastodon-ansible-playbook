@@ -8,3 +8,7 @@
   become_user: postgres
   tags:
     - postgresql
+
+- include: config.yml
+  tags:
+    - postgresql

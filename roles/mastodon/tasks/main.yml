@@ -15,8 +15,23 @@
   tags:
     - mastodon
 
-- include: mastodon.yml
+- include: build.yml
   become: yes
   become_user: mastodon
   tags:
     - mastodon
+
+- include: web.yml
+  tags:
+    - mastodon
+    - web
+
+- include: sidekiq.yml
+  tags:
+    - mastodon
+    - sidekiq
+
+- include: streaming.yml
+  tags:
+    - mastodon
+    - streaming

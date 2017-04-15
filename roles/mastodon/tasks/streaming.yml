@@ -1,0 +1,13 @@
+---
+- name: Create mastodon-streaming service
+  template:
+    src: mastodon-streaming.service.j2
+    dest: /etc/systemd/system/mastodon-streaming.service
+  register: mastodon_streaming_service_tmpl
+
+- name: Start and enable mastodon-streaming service
+  systemd:
+    name: mastodon-streaming
+    state: started
+    enabled: yes
+    daemon_reload: yes

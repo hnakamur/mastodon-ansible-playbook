@@ -4,8 +4,6 @@
     path: "{{ production_env_path }}"
   register: production_env_file_st
 
-- debug: var=production_env_file_st
-
 - block:
     - name: Generate secret for paperclip
       shell: |

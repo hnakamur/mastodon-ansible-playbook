@@ -2,3 +2,7 @@
 - include: install.yml
   tags:
     - redis
+
+- include: config.yml
+  tags:
+    - redis
