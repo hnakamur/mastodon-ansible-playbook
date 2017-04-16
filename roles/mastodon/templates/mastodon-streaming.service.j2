@@ -7,7 +7,7 @@ Type=simple
 User=mastodon
 WorkingDirectory={{ mastodon_app_dir }}
 Environment="NODE_ENV=production"
-Environment="PORT=4000"
+Environment="PORT={{ mastodon_streaming_port }}"
 ExecStart=/usr/bin/npm run start
 TimeoutSec=15
 Restart=always

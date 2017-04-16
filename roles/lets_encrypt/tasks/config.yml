@@ -1,0 +1,5 @@
+---
+- name: Install SSL certificates
+  command: /usr/local/lego/lego --path {{ lets_encrypt_config_dir }} --webroot /usr/share/nginx/html --email {{ lets_encrypt_admin_email }}{% for domain in lets_encrypt_domains %} --domains {{ domain }}{% endfor %} --accept-tos run
+  args: 
+    creates: "{{ ssl_certificate_path }}"

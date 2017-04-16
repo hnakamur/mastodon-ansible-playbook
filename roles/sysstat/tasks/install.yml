@@ -1,0 +1,5 @@
+---
+- name: Make sure sysstat is installed
+  apt:
+    name: sysstat
+    state: present

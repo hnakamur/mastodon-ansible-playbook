@@ -8,6 +8,7 @@
     chdir: "{{ mastodon_app_dir }}"
     creates: /home/mastodon/.rbenv/shims/bundle
 
+# TODO: Make this task idempotent, but don't know how to check
 - name: Install gems for mastodon
   shell: |
     export PATH="$HOME/.rbenv/bin:$PATH"
@@ -18,10 +19,13 @@
   tags:
     - bundle_install
 
+# TODO: Make this task idempotent, but don't know how to check
 - name: Install node modules for mastodon
   command: yarn install
   args:
     chdir: "{{ mastodon_app_dir }}"
+  environment:
+    PYTHON: "{{ ansible_python_interpreter }}"
   tags:
     - yarn_install
 
@@ -29,6 +33,7 @@
   tags:
     - config
 
+# TODO: Make this task idempotent, but don't know how to check
 - name: Migrate mastodon production db
   shell: |
     export PATH="$HOME/.rbenv/bin:$PATH"
@@ -39,6 +44,7 @@
   tags:
     - migrate_db
 
+# TODO: Make this task idempotent, but don't know how to check
 - name: Precompile assets
   shell: |
     export PATH="$HOME/.rbenv/bin:$PATH"

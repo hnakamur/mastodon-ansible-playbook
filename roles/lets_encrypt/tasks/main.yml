@@ -1,0 +1,8 @@
+---
+- include: install.yml
+  tags:
+    - lets_encrypt
+
+- include: config.yml
+  tags:
+    - lets_encrypt

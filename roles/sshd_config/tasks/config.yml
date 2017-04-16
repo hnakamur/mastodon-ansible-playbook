@@ -1,0 +1,13 @@
+---
+- name: Disable ssh password login
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    insertafter: "#PermitEmptyPasswords yes"
+    line: "PermitEmptyPasswords no"
+  register: sshd_config_ret
+
+- name: Reload sshd
+  systemd:
+    name: sshd
+    state: reloaded
+  when: sshd_config_ret.changed
