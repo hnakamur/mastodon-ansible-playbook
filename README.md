@@ -75,3 +75,18 @@ ansible-playbook vps.yml -v -D
 
 - root ユーザで鍵認証で接続します。
 - 途中sudoでpostgresユーザやmastdonユーザに切り替えて実行します (rootユーザで接続するのはこの都合です)。
+
+## 作成したアカウントに管理者権限を設定する
+
+[Dockerで雑にMastodonを起動する方法 - Qiita](http://qiita.com/zembutsu/items/fd52a504321dd5d6f0b8) で紹介されていました。公式ドキュメントでは [Turning into an admin](https://github.com/tootsuite/documentation/blob/8367c216524513ca9ed1e6fb4505a734853c308b/Running-Mastodon/Administration-guide.md#turning-into-an-admin) です。
+
+サインアップ画面から通常のアカウントと同じ手順でアカウントを作成した後、以下のコマンドを実行すると管理権限が付与されます。
+
+```
+ssh ubuntu@mastodonサーバ
+sudo su - mastodone
+cd live
+RAILS_ENV=production bundle exec rails mastodon:make_admin USERNAME=対象のユーザ名 
+```
+
+管理権限を持つユーザで設定画面を開くと「管理」というメニュー項目が追加されています。
