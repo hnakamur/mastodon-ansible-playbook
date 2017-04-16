@@ -1,0 +1,5 @@
+---
+- name: Install ufw
+  apt:
+    name: ufw
+    state: present

@@ -1,0 +1,8 @@
+---
+- include: install.yml
+  tags:
+    - firewall
+
+- include: config.yml
+  tags:
+    - firewall

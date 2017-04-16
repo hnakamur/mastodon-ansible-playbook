@@ -2,6 +2,7 @@
 - hosts: containers
   roles:
     #- apt_update
+    - firewall
     - locale
     - base_packages
     - users
