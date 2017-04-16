@@ -8,6 +8,7 @@ mastadon-ansible-playbook
 - Ubuntu 16.04 amd64をインストールしてください。
 - インストール時に管理用のユーザ名はubuntuにしてください。
 - 利用するサーバのホスト名のAレコードをDNSで設定しておいてください。
+- 一度sshで接続して `Are you sure you want to continue connecting (yes/no)?` に `yes` と回答して `~/.ssh/known_hosts` にエントリが追加された状態にしてください (`yes` と回答さえすればログインはしなくてよいです)。
 
 ### Ansible実行環境を準備
 
