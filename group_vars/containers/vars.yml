@@ -20,8 +20,8 @@ db_user: mastodon
 db_password: "{{ lookup('ini', 'db_password section=production file=passwords.ini') }}"
 db_port: 5432
 
-local_domain: example.com
-local_https: "false"
+local_domain: mstdon.naruh.com
+local_https: "true"
 
 smtp_server: smtp.gmail.com
 smtp_port: 587

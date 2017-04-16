@@ -1,5 +1,5 @@
 ---
-- hosts: containers
+- hosts: vps
   roles:
     #- apt_update
     - firewall
