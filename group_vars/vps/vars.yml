@@ -47,3 +47,9 @@ smtp_delivery_method: smtp
 smtp_auth_method: plain
 smtp_openssl_verify_mode: none
 smtp_enable_starttls_auto: "true"
+
+mastodon_app_server_host: 127.0.0.1
+mastodon_app_server_port: 3000
+
+mastodon_streaming_host: localhost
+mastodon_streaming_port: 4000
