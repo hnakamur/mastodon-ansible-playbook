@@ -1,0 +1,16 @@
+---
+- hosts: "{{ group }}"
+  remote_user: ubuntu
+  become: yes
+  roles:
+    - authorized_key
+    - sshd_config
+    - firewall
+    - hostname
+    - apt_update
+    - ntp
+    - locale
+    - sysstat
+    - base_packages
+    - nginx_firsttime
+    - lets_encrypt

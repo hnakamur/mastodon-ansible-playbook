@@ -1,0 +1,8 @@
+---
+- include: install.yml
+  tags:
+    - nginx_firsttime
+
+- include: config.yml
+  tags:
+    - nginx_firsttime

@@ -1,0 +1,6 @@
+---
+- name: Install lego (lets encrypt client written in go)
+  shell: curl -sSL {{ lets_encrypt_tarball_url }} | tar Jxf - -C /usr/local/
+  args:
+    creates: /usr/local/lego/lego
+    warn: no

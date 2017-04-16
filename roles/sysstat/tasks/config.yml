@@ -1,0 +1,5 @@
+---
+- name: Write cron file for sysstat
+  template:
+    src: sysstat.cron.j2
+    dest: /etc/cron.d/sysstat

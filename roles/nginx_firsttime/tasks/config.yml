@@ -1,0 +1,21 @@
+---
+- name: Write nginx config files
+  template:
+    src: "{{ item }}.j2"
+    dest: /etc/nginx/{{ item }}
+  with_items:
+    - nginx.conf
+    - conf.d/default.conf
+  register: nginx_config_ret
+
+- name: Start and enable nginx service
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Restart nginx if config changed
+  systemd:
+    name: nginx
+    state: restarted
+  when: nginx_config_ret.changed

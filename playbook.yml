@@ -1,14 +1,12 @@
 ---
-- hosts: vps
+- hosts: "{{ group }}"
+  remote_user: root
+  become: yes
   roles:
-    #- apt_update
-    - firewall
-    - ntp
-    - locale
-    - base_packages
     - users
     - postgresql
     - redis
     - nodejs
     - yarn
     - mastodon
+    - nginx

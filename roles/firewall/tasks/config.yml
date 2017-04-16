@@ -14,13 +14,7 @@
     direction: outgoing
     policy: allow
 
-- name: Allow ssh
-  ufw:
-    rule: allow
-    port: ssh
-    proto: tcp
-
-- name: Rate limit ssh
+- name: Limit ssh
   ufw:
     rule: limit
     port: ssh

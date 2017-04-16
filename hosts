@@ -1,5 +1,8 @@
 [vps]
-mstdn.naruh.com
+naruh.com public_ip=160.16.94.194
+
+[vps:vars]
+ansible_python_interpreter = /usr/bin/python3
 
 [containers]
 mastodon 

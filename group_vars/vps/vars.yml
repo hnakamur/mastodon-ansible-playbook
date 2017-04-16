@@ -1,5 +1,4 @@
 ---
-authorized_key_user: ubuntu
 authorized_key_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
 mastodon_app_dir: /home/mastodon/live
@@ -23,8 +22,20 @@ db_user: mastodon
 db_password: "{{ lookup('ini', 'db_password section=production file=passwords.ini') }}"
 db_port: 5432
 
-local_domain: localhost
-local_https: "false"
+local_domain: mstdn.naruh.com
+local_https: "true"
+
+lets_encrypt_domains:
+  - mstdn.naruh.com
+  - www.naruh.com
+  - naruh.com
+lets_encrypt_admin_email: hnakamur@gmail.com
+lets_encrypt_config_dir: /etc/letsencrypt
+lets_encrypt_lego_version: 0.3.1
+lets_encrypt_tarball_url: https://github.com/xenolf/lego/releases/download/v{{ lets_encrypt_lego_version }}/lego_linux_amd64.tar.xz
+
+ssl_certificate_path: "{{ lets_encrypt_config_dir }}/certificates/{{ lets_encrypt_domains[0] }}.crt"
+ssl_certificate_key_path: "{{ lets_encrypt_config_dir }}/certificates/{{ lets_encrypt_domains[0] }}.key"
 
 smtp_server: smtp.gmail.com
 smtp_port: 587

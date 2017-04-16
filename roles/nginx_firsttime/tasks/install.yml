@@ -1,0 +1,20 @@
+---
+- name: Add apt key for nginx.org repository
+  apt_key:
+    id: 7BD9BF62
+    url: http://nginx.org/keys/nginx_signing.key
+    state: present
+
+- name: Add nginx.org apt repository
+  apt_repository:
+    repo: deb http://nginx.org/packages/ubuntu/ xenial nginx
+    state: present
+  register: nginx_org_apt_repository
+
+- debug: var=nginx_org_apt_repository
+
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: "{{ nginx_org_apt_repository.changed }}"

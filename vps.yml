@@ -1,0 +1,2 @@
+---
+- include: playbook.yml group=vps

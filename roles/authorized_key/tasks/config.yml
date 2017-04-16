@@ -1,0 +1,12 @@
+---
+- name: Set ssh public key for ubuntu user
+  authorized_key:
+    user: ubuntu
+    key: "{{ authorized_key_key }}"
+    state: present
+
+- name: Set ssh public key for root user
+  authorized_key:
+    user: root
+    key: "{{ authorized_key_key }}"
+    state: present
