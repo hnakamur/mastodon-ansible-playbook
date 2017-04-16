@@ -1,7 +1,7 @@
 ---
 authorized_key_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
-nginx_mastodon_server_name: "{{ mstdn.naruh.com }}"
+nginx_mastodon_server_name: mstdn.naruh.com
 nginx_mastodon_server_uses_https: "true"
 ssl_certificate_path: "{{ lets_encrypt_config_dir }}/certificates/{{ lets_encrypt_domains[0] }}.crt"
 ssl_certificate_key_path: "{{ lets_encrypt_config_dir }}/certificates/{{ lets_encrypt_domains[0] }}.key"
