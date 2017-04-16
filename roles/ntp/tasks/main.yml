@@ -1,0 +1,8 @@
+---
+- include: install.yml
+  tags:
+    - ntp
+
+- include: config.yml
+  tags:
+    - ntp

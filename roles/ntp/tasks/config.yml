@@ -1,0 +1,18 @@
+---
+- name: Write chrony config file
+  template:
+    src: chrony.conf.j2
+    dest: /etc/chrony/chrony.conf
+  register: chrony_conf_ret
+
+- name: Start and enable chrony
+  systemd:
+    name: chrony
+    state: started
+    enabled: yes
+
+- name: Restart chrony if config is modified
+  systemd:
+    name: chrony
+    state: restarted
+  when: chrony_conf_ret.changed

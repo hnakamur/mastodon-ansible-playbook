@@ -3,6 +3,7 @@
   roles:
     #- apt_update
     - firewall
+    - ntp
     - locale
     - base_packages
     - users
