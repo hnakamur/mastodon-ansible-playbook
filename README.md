@@ -95,3 +95,11 @@ RAILS_ENV=production bundle exec rails mastodon:make_admin USERNAME=対象のユ
 
 「管理」メニューの「サイト設定」で
 「新規登録を受け付ける」の右の「有効」をクリックするとトグルで「無効」になります。
+
+## Ansible以外でのセットアップ
+
+* いきなり自動化は心配なので最初は手動が良い方は
+  [さくらのVPSで自分の Mastodon サーバを最速でつくる方法 - Qiita](http://qiita.com/hekki/items/c3f42c31632105389c79) をどうぞ。
+* 手っ取り早くDockerで動かしてみたい方は
+  [Dockerで雑にMastodonを起動する方法 - Qiita](http://qiita.com/zembutsu/items/fd52a504321dd5d6f0b8) をどうぞ。
+* DockerじゃなくてVagrantが良い方は [mastdonのレポジトリ](https://github.com/tootsuite/mastodon/)内の [Vagrantfile](https://github.com/tootsuite/mastodon/blob/master/Vagrantfile) をどうぞ。
