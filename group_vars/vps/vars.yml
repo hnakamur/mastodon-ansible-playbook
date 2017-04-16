@@ -27,13 +27,14 @@ local_https: "true"
 
 lets_encrypt_domains:
   - mstdn.naruh.com
-  - www.naruh.com
   - naruh.com
+  - www.naruh.com
 lets_encrypt_admin_email: hnakamur@gmail.com
 lets_encrypt_config_dir: /etc/letsencrypt
 lets_encrypt_lego_version: 0.3.1
 lets_encrypt_tarball_url: https://github.com/xenolf/lego/releases/download/v{{ lets_encrypt_lego_version }}/lego_linux_amd64.tar.xz
 
+nginx_mastodon_server_name: "{{ local_domain }}"
 ssl_certificate_path: "{{ lets_encrypt_config_dir }}/certificates/{{ lets_encrypt_domains[0] }}.crt"
 ssl_certificate_key_path: "{{ lets_encrypt_config_dir }}/certificates/{{ lets_encrypt_domains[0] }}.key"
 

@@ -3,6 +3,7 @@
   shell: curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
   args:
     creates: /etc/apt/sources.list.d/nodesource.list
+    warn: no
 
 - name: Install nodejs
   apt:
