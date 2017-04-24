@@ -43,6 +43,7 @@ pip install ansible
    - `lets_encrypt_admin_email` : let's encrypt に登録する管理者のメールアドレス。
    - `smtp_*` : smtp関連の設定。現在はGmail用の設定を書いています。Gmailを使う場合はメールアドレスだけ書き換えればOKです。
    - `ntp_servers` : ntpサーバ名。
+   - `mastodon_daily_cron_timing`: デフォルトは `17 4 * * *` としていますが適宜変更してください。
 * `passwords.ini.sample` を `password.ini` にコピーしてパスワードを変更する
    - `db_password` : PostgreSQLのmastodonユーザのパスワード。
    - `smtp_password` : smtpサーバに接続するときのパスワード。Gmailで2段階認証を使っている場合は[アプリ パスワードでログイン - Gmail ヘルプ](https://support.google.com/mail/answer/185833?hl=ja)を参照してアプリパスワードを生成して指定してください。

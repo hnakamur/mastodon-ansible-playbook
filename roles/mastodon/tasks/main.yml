@@ -35,3 +35,8 @@
   tags:
     - mastodon
     - streaming
+
+- include: cron.yml
+  tags:
+    - mastodon
+    - mastodon_cron
