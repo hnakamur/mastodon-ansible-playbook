@@ -27,7 +27,7 @@ mastodon-ansible-playbook
 sudo apt install git python3-venv build-essential python3-dev openssl-dev libssl-dev sshpass
 git clone https://github.com/hnakamur/mastodon-ansible-playbook
 python3 -m venv venv
-source venv/bin/active
+source venv/bin/activate
 pip install --upgrade pip
 pip install ansible
 ```
