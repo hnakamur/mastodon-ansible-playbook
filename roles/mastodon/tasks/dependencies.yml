@@ -11,3 +11,4 @@
     - libxml2-dev
     - libxslt1-dev
     - libreadline-dev
+    - imagemagick
