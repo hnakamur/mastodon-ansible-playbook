@@ -50,7 +50,7 @@ pip install ansible
 ## Ansibleを実行
 
 ```
-source venv/bin/active
+source venv/bin/activate
 ```
 
 を実行してvirtualenv環境を実行した状態で以下のコマンドを実行してください。
