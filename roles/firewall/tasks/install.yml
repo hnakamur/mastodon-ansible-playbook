@@ -1,5 +1,10 @@
 ---
-- name: Install ufw
+- name: Uninstall ufw
   apt:
     name: ufw
+    state: absent
+
+- name: Install iptables-persistent
+  apt:
+    name: iptables-persistent
     state: present

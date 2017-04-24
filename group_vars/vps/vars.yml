@@ -50,3 +50,8 @@ ntp_servers:
   # http://wiki.nothing.sh/page/NTP/%BF%E4%BE%A9%B8%F8%B3%AB%A5%B5%A1%BC%A5%D0
   - ntp.jst.mfeed.ad.jp
   - ntp.nict.jp
+
+iptables_worldwide_open_ports:
+  - 22
+  - 80
+  - 443

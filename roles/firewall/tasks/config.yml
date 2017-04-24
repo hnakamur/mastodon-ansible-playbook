@@ -1,37 +1,10 @@
 ---
-- name: Enable firewall logging
-  ufw:
-    logging: on
+- name: Write iptables.conf
+  template:
+    src: iptables.rules.v4.j2
+    dest: /etc/iptables/rules.v4
+  register: firewall_iptables_rules_v4
 
-- name: Deny all incoming as default
-  ufw:
-    direction: incoming
-    policy: deny
-    log: yes
-
-- name: Allow all outcoming as default
-  ufw:
-    direction: outgoing
-    policy: allow
-
-- name: Limit ssh
-  ufw:
-    rule: limit
-    port: ssh
-    proto: tcp
-
-- name: Allow http
-  ufw:
-    rule: allow
-    port: http
-    proto: tcp
-
-- name: Allow https
-  ufw:
-    rule: allow
-    port: https
-    proto: tcp
-
-- name: Enable ufw
-  ufw:
-    state: enabled
+- name: Run iptables-restore
+  command: /usr/sbin/netfilter-persistent reload
+  when: firewall_iptables_rules_v4.changed
