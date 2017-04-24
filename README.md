@@ -1,4 +1,4 @@
-mastadon-ansible-playbook
+mastodon-ansible-playbook
 =========================
 
 ## このプレイブックの目的
@@ -24,7 +24,7 @@ mastadon-ansible-playbook
 
 ```
 sudo apt install git python3-venv build-essential python3-dev openssl-dev libssl-dev sshpass
-git clone https://github.com/hnakamur/mastadon-ansible-playbook
+git clone https://github.com/hnakamur/mastodon-ansible-playbook
 python3 -m venv venv
 source venv/bin/active
 pip install --upgrade pip
