@@ -1,0 +1,37 @@
+#!/bin/bash
+set -eu
+
+log() {
+  local priority=$1
+  shift
+  logger -t mastodon-daily -p "$priority" "$@"
+}
+
+elapsed_since() {
+  local elapsed=$(($SECONDS - $1))
+  echo "$(($elapsed/60))m$(($elapsed%60))s"
+}
+
+run_task() {
+  local task=$1
+  local start=$SECONDS
+  log user.info $task started.
+  cd "{{ mastodon_app_dir }}" && /home/mastodon/.rbenv/shims/bundle exec rake $task | log user.info
+  local elapsed_seconds=$(($SECONDS - $start))
+  local elapsed=$(($elapsed_seconds/60))m$(($elapsed_seconds%60))s
+  log user.info $task finished, elapsed=$elapsed.
+}
+
+RAILS_ENV=production
+export RAILS_ENV
+
+# https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Production-guide.md#cronjobs
+# https://github.com/tootsuite/mastodon/blob/8565ba68f7a6e4342cd4a63833b4d0ff743f0235/lib/tasks/mastodon.rake#L5-L11
+# http://qiita.com/clworld/items/bc3d8f97d38f2ba58492
+
+log user.info mastodon-daily start.
+run_task mastodon:feeds:clear
+run_task mastodon:media:clear
+run_task mastodon:users:clear
+run_task mastodon:push:refresh
+log user.info mastodon-daily finished.

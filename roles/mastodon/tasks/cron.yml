@@ -1,0 +1,13 @@
+---
+- name: Write mastodon daily script file
+  template:
+    src: mastodon-daily.sh.j2
+    dest: /usr/local/sbin/mastodon-daily.sh
+    owner: mastodon
+    group: mastodon
+    mode: 0755
+
+- name: Write mastodon daily cron file
+  template:
+    src: mastodon-daily.cron.j2
+    dest: /etc/cron.d/mastodon-daily

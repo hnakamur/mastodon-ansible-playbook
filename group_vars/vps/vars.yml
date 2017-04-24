@@ -15,6 +15,7 @@ lets_encrypt_config_dir: /etc/letsencrypt
 lets_encrypt_lego_version: 0.3.1
 lets_encrypt_tarball_url: https://github.com/xenolf/lego/releases/download/v{{ lets_encrypt_lego_version }}/lego_linux_amd64.tar.xz
 
+mastodon_daily_cron_timing: "17 4 * * *"
 mastodon_app_dir: /home/mastodon/live
 mastodon_app_git_version: master
 production_env_path: "{{ mastodon_app_dir }}/.env.production"
