@@ -3,3 +3,10 @@
   template:
     src: sysstat.cron.j2
     dest: /etc/cron.d/sysstat
+
+- name: Enable sysstat
+  lineinfile:
+    name: /etc/default/sysstat
+    line: 'ENABLED="true"'
+    regexp: '^ENABLED='
+    state: present
