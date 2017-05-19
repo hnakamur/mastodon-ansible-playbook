@@ -1,10 +1,16 @@
 ---
-- name: Write iptables.conf
+- name: Write iptables rules.v4
   template:
     src: iptables.rules.v4.j2
     dest: /etc/iptables/rules.v4
   register: firewall_iptables_rules_v4
 
+- name: Write iptables rules.v6
+  template:
+    src: iptables.rules.v6.j2
+    dest: /etc/iptables/rules.v6
+  register: firewall_iptables_rules_v6
+
 - name: Run iptables-restore
   command: /usr/sbin/netfilter-persistent reload
-  when: firewall_iptables_rules_v4.changed
+  when: firewall_iptables_rules_v4.changed or firewall_iptables_rules_v6.changed
